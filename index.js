@@ -3,22 +3,21 @@
 
 const path = require("path");
 const fs = require("fs");
-const dotNotes = require("dot-notes");
 const PLURAL_KEYWORDS = ["zero", "one", "few", "many", "other"];
-const dir = 'translations';
+const DIR = 'translations';
 
 let locales = fs.readdirSync(path.join('app', 'locales'));
 locales.forEach((localeName) => {
   let content = fs.readFileSync(path.join('app', 'locales', locales[0], 'translations.js'), 'utf8');
   let obj = new Function(content.replace('export default', 'return'))();
   let json = JSON.stringify(obj);
-  if (!fs.existsSync(dir)) {
-    fs.mkdirSync(dir);
+  if (!fs.existsSync(DIR)) {
+    fs.mkdirSync(DIR);
   }
   let expanded = Object.keys(obj).reduce((accum, key) => {
-    return dotNotes.create(accum, key, obj[key]);
+    return create(accum, key, obj[key]);
   }, {});
-  fs.writeFileSync(path.join(dir, `${localeName}.json`), transform(expanded), 'utf8');
+  fs.writeFileSync(path.join(DIR, `${localeName}.json`), transform(expanded), 'utf8');
 }, {});
 
 function transform(obj) {
@@ -60,3 +59,34 @@ function composePlural(obj) {
   return str;
 }
 
+function create(obj, str, val) {
+  var keys = str.split(".");
+
+  var container;
+
+  if (obj && typeof obj === "object") {
+    container = obj;
+  } else {
+    container = typed(keys[0]);
+  }
+
+  var tmp = container;
+
+  for (var k = 0, j = keys.length - 1; k < j; k++) {
+    var key = keys[k];
+
+    if (!tmp[key]) {
+      tmp[key] = typed(keys[k + 1]);
+    }
+
+    tmp = tmp[key];
+  }
+
+  tmp[keys[j]] = val;
+
+  return container;
+}
+
+function typed(key) {
+  return typeof key === "number" ? [] : {};
+}

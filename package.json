@@ -12,9 +12,7 @@
   "author": "DockYard",
   "contributors": "Miguel Camba, Scott Newcomer",
   "license": "MIT",
-  "dependencies": {
-    "dot-notes": "^3.1.1"
-  },
+  "dependencies": {},
   "engines": {
     "node": ">= 6"
   },
