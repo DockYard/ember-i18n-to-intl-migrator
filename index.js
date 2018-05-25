@@ -14,10 +14,7 @@ locales.forEach((localeName) => {
   if (!fs.existsSync(DIR)) {
     fs.mkdirSync(DIR);
   }
-  let expanded = Object.keys(obj).reduce((accum, key) => {
-    return create(accum, key, obj[key]);
-  }, {});
-  fs.writeFileSync(path.join(DIR, `${localeName}.json`), transform(expanded), 'utf8');
+  fs.writeFileSync(path.join(DIR, `${localeName}.json`), transform(obj), 'utf8');
 }, {});
 
 function transform(obj) {
@@ -26,18 +23,32 @@ function transform(obj) {
 }
 
 function walk(obj) {
+  // need to create pluralizedObject b/c as we iterate the keys, we don't necessarily know if the next
+  // key is apart of the same translation object --> { "foo.one": "bar", "foo.other": "wee", "bar.one": "doo", "bar.two": "dee" }
+  // as a result, it is hard to preserve the order unless we keep an Array of keys (for ORDER purposes) and rebuild the object.  TODO?
+  let pluralizedObject = {};
   Object.keys(obj).forEach(key => {
     let value = obj[key];
-    if (typeof value === 'string') {
+    let parts = key.split('.');
+    if (parts.length > 1 && PLURAL_KEYWORDS.includes(parts[parts.length - 1])) {
+      // 1. check if "boo.one".  If so, build object with plural translations
+      // will composePlural later
+      let [plural] = parts.splice(-1);
+      let keyword = parts.join('.');
+      pluralizedObject[keyword] = { [plural]: value, ...pluralizedObject[keyword] };
+      delete obj[key];
+    } else if (typeof value === 'object' && isPluralObject(value)) {
+      // 2. if pluralized value -> "boo": { "one": "baz", "two": "bar" }
+      obj[key] = composePlural(value);
+    } else if (typeof value === 'string') {
       obj[key] = transformTranslation(value);
     } else {
-      if (isPluralObject(value)) {
-        obj[key] = composePlural(value);
-      } else {
-        obj[key] = walk(value);
-      }
+      obj[key] = walk(value);
     }
-  })
+  });
+  for (let key in pluralizedObject) {
+    obj[key] = composePlural(pluralizedObject[key]);
+  }
   return obj;
 }
 
