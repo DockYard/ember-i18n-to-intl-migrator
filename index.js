@@ -69,35 +69,3 @@ function composePlural(obj) {
   str += '}'
   return str;
 }
-
-function create(obj, str, val) {
-  var keys = str.split('.');
-
-  var container;
-
-  if (obj && typeof obj === "object") {
-    container = obj;
-  } else {
-    container = typed(keys[0]);
-  }
-
-  var tmp = container;
-
-  for (var k = 0, j = keys.length - 1; k < j; k++) {
-    var key = keys[k];
-
-    if (!tmp[key]) {
-      tmp[key] = typed(keys[k + 1]);
-    }
-
-    tmp = tmp[key];
-  }
-
-  tmp[keys[j]] = val;
-
-  return container;
-}
-
-function typed(key) {
-  return typeof key === "number" ? [] : {};
-}
