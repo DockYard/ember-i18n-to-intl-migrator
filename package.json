@@ -1,0 +1,22 @@
+{
+  "name": "ember-i18n-intl-migrator",
+  "version": "0.0.1",
+  "description": "Migrate ember-i18n to ember-intl",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "ember-migrate-i18n": "./index.js"
+  },
+  "author": "DockYard",
+  "contributors": "Miguel Camba, Scott Newcomer",
+  "license": "MIT",
+  "dependencies": {
+    "dot-notes": "^3.1.1"
+  },
+  "engines": {
+    "node": ">= 6"
+  },
+  "devDependencies": {}
+}
