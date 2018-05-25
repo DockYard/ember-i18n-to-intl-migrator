@@ -60,7 +60,7 @@ function composePlural(obj) {
 }
 
 function create(obj, str, val) {
-  var keys = str.split(".");
+  var keys = str.split('.');
 
   var container;
 
