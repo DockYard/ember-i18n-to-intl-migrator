@@ -6,13 +6,15 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "bin": {
-    "ember-migrate-i18n": "./index.js"
-  },
+  "bin": "./bin/ember-i18n-intl-migrator.js",
   "author": "DockYard",
   "contributors": "Miguel Camba, Scott Newcomer",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "execa": "^0.10.0",
+    "yargs": "^11.0.0"
+  },
   "engines": {
     "node": ">= 6"
   },
