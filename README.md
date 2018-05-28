@@ -29,5 +29,5 @@ npm install -g jscodeshift
 Then you can run the codemod with:
 
 ```sh
-jscodeshift -t https://rawgit.com/ember-i18n-to-intl-migrator/master/lib/codemod.js
+jscodeshift -t https://raw.githubusercontent.com/DockYard/ember-i18n-to-intl-migrator/master/lib/codemod.js app/
 ```
