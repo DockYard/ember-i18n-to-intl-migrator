@@ -13,7 +13,6 @@
   "dependencies": {
     "chalk": "^2.4.1",
     "execa": "^0.10.0",
-    "fs-extra": "^6.0.1",
     "yamljs": "^0.3.0",
     "yargs": "^11.0.0"
   },
@@ -21,6 +20,7 @@
     "node": ">= 6"
   },
   "devDependencies": {
+    "fs-extra": "^6.0.1",
     "jest": "^23.1.0",
     "jscodeshift": "^0.5.0"
   }
