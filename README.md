@@ -10,6 +10,12 @@ Run the following command in your terminal:
 npm install ember-i18n-intl-migrator -g
 ```
 
+or  alternatively with `yarn`:
+
+```bash
+yarn global add ember-i18n-intl-migrator
+```
+
 ## Usage
 
 To transform the translation files run:
