@@ -4,7 +4,7 @@
   "description": "Migrate ember-i18n to ember-intl",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "bin": "./bin/ember-i18n-intl-migrator.js",
   "author": "DockYard",
@@ -19,5 +19,9 @@
   "engines": {
     "node": ">= 6"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "fs-extra": "^6.0.1",
+    "jest": "^23.1.0",
+    "jscodeshift": "^0.5.0"
+  }
 }
