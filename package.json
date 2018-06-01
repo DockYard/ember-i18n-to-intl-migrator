@@ -1,6 +1,6 @@
 {
   "name": "ember-i18n-intl-migrator",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "Migrate ember-i18n to ember-intl",
   "main": "index.js",
   "scripts": {
