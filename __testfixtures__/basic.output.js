@@ -5,7 +5,9 @@ export default Route.extend({
   intl: inject('intl'),
   intl: inject(),
   intl: service(),
+
   random: alias('random'),
+
 
   init() {
     this.intl.t('wat');
