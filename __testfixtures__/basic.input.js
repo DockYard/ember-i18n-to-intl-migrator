@@ -1,5 +1,6 @@
 import Route from '@ember/routing/route';
 import { get } from '@ember/object';
+import { translationMacro as t } from 'ember-i18n';
 
 export default Route.extend({
   i18n: inject('i18n'),
