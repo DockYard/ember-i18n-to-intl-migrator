@@ -8,6 +8,7 @@ common:
         prev: Prev
         next: Next
         pageOf: 'Page {number} of {total}'
+    customers: '{count, plural, =1 {One} two {A few} few {Some}}'
     loading: Loading
     sectionBreak: 'Section Break'
     helpText: 'Help Text'

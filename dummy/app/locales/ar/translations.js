@@ -10,6 +10,11 @@ export default {
       "next": "Next",
       "pageOf": "Page {{number}} of {{total}}"
     },
+    "customers": {
+      "one": "One",
+      "two": "A few",
+      "few": "Some"
+    },
     "loading": "Loading",
     "sectionBreak": "Section Break",
     "helpText": "Help Text",
