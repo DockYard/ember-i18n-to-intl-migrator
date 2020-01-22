@@ -1,0 +1,9 @@
+button:
+    state:
+        loading: Loading...
+        loaded: Loaded
+user:
+    edit:
+        title: 'Edit User'
+    followers:
+        title: '{count, plural, =1 {One Follower} other {All # Followers}}'
