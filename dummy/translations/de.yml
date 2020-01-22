@@ -1,3 +1,7 @@
+button:
+    state:
+        loading: Loading...
+        loaded: Loaded
 user:
     edit:
         title: 'Edit User'
